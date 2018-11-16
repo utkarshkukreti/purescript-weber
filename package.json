@@ -1,0 +1,16 @@
+{
+  "name": "purescript-weber",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "run-s build:event build:pulp",
+    "build:event": "ts-node g/Event.ts > src/Weber/Event.purs",
+    "build:pulp": "pulp build",
+    "test": "pulp test"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3",
+    "pulp": "^12.3.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
+  }
+}
