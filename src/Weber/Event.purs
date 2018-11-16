@@ -28,6 +28,36 @@ instance isEventAnimation :: IsEvent Animation
 
 --
 
+foreign import data Clipboard :: Type
+
+class IsClipboard a
+
+instance isClipboardClipboard :: IsClipboard Clipboard
+instance isEventClipboard :: IsEvent Clipboard
+
+--
+
+foreign import data Composition :: Type
+
+class IsComposition a
+
+instance isCompositionComposition :: IsComposition Composition
+instance isUiComposition :: IsUi Composition
+instance isEventComposition :: IsEvent Composition
+
+--
+
+foreign import data Drag :: Type
+
+class IsDrag a
+
+instance isDragDrag :: IsDrag Drag
+instance isMouseDrag :: IsMouse Drag
+instance isUiDrag :: IsUi Drag
+instance isEventDrag :: IsEvent Drag
+
+--
+
 foreign import data Event :: Type
 
 class IsEvent a
@@ -57,6 +87,16 @@ type' :: forall a. IsEvent a => a -> String
 type' = property "type"
 
 instance isEventEvent :: IsEvent Event
+
+--
+
+foreign import data Focus :: Type
+
+class IsFocus a
+
+instance isFocusFocus :: IsFocus Focus
+instance isUiFocus :: IsUi Focus
+instance isEventFocus :: IsEvent Focus
 
 --
 

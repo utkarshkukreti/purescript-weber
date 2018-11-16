@@ -6,7 +6,11 @@
 
   type Event =
     | 'Animation'
+    | 'Clipboard'
+    | 'Composition'
+    | 'Drag'
     | 'Event'
+    | 'Focus'
     | 'Keyboard'
     | 'Mouse'
     | 'Pointer'
@@ -21,6 +25,9 @@
       elapsedTime: 'number',
       pseudoElement: 'string',
     },
+    Clipboard: {},
+    Composition: {},
+    Drag: {},
     Event: {
       bubbles: 'boolean',
       cancelable: 'boolean',
@@ -31,6 +38,7 @@
       timeStamp: 'number',
       type: 'string',
     },
+    Focus: {},
     Keyboard: {
       altKey: 'boolean',
       charCode: 'number',
@@ -103,7 +111,11 @@
 
   const Extends: Record<Event, Event[]> = {
     Animation: ['Event'],
+    Clipboard: ['Event'],
+    Composition: ['Ui', 'Event'],
+    Drag: ['Mouse', 'Ui', 'Event'],
     Event: [],
+    Focus: ['Ui', 'Event'],
     Keyboard: ['Ui', 'Event'],
     Mouse: ['Ui', 'Event'],
     Pointer: ['Mouse', 'Ui', 'Event'],
