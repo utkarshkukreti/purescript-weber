@@ -109,20 +109,20 @@
     },
   };
 
-  const Extends: Record<Event, Event[]> = {
-    Animation: ['Event'],
-    Clipboard: ['Event'],
-    Composition: ['Ui', 'Event'],
-    Drag: ['Mouse', 'Ui', 'Event'],
-    Event: [],
-    Focus: ['Ui', 'Event'],
-    Keyboard: ['Ui', 'Event'],
-    Mouse: ['Ui', 'Event'],
-    Pointer: ['Mouse', 'Ui', 'Event'],
-    Touch: ['Ui', 'Event'],
-    Transition: ['Event'],
-    Ui: ['Event'],
-    Wheel: ['Mouse', 'Ui', 'Event'],
+  const Extends: Record<Event, Event | null> = {
+    Animation: 'Event',
+    Clipboard: 'Event',
+    Composition: 'Ui',
+    Drag: 'Mouse',
+    Event: null,
+    Focus: 'Ui',
+    Keyboard: 'Ui',
+    Mouse: 'Ui',
+    Pointer: 'Mouse',
+    Touch: 'Ui',
+    Transition: 'Event',
+    Ui: 'Event',
+    Wheel: 'Mouse',
   };
 
   console.log(`module Weber.Event where
@@ -173,8 +173,11 @@ ${identifier} = effect0 "${n}"
     }
 
     console.log(`instance is${name}${name} :: Is${name} ${name}`);
-    for (const extend of Extends[name]) {
+    let current: Event | null = name;
+    while (current && Extends[current]) {
+      const extend = Extends[current];
       console.log(`instance is${extend}${name} :: Is${extend} ${name}`);
+      current = Extends[current];
     }
   }
 })();
