@@ -1,6 +1,7 @@
 {
   "name": "purescript-weber",
   "version": "0.1.0",
+  "license": "MIT",
   "ignore": ["**/.*", "node_modules", "bower_components", "output"],
   "dependencies": {
     "purescript-prelude": "^4.1.0",
