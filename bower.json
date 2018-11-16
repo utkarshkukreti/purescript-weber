@@ -2,6 +2,10 @@
   "name": "purescript-weber",
   "version": "0.1.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/utkarshkukreti/purescript-weber.git"
+  },
   "ignore": ["**/.*", "node_modules", "bower_components", "output"],
   "dependencies": {
     "purescript-prelude": "^4.1.0",
