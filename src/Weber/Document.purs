@@ -16,3 +16,5 @@ foreign import querySelector' :: Document -> String -> Effect (Nullable Element)
 
 querySelector :: Document -> String -> Effect (Maybe Element)
 querySelector document' selector = Nullable.toMaybe <$> querySelector' document' selector
+
+foreign import querySelectorAll :: Document -> String -> Effect (Array Element)

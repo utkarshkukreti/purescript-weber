@@ -13,3 +13,13 @@ main = do
   log $ show $ isJust el
   el' <- Document.querySelector Document.document "foo"
   log $ show $ isNothing el'
+
+  els <- Document.querySelectorAll Document.document "body"
+  log $ show $ case els of
+    [_] -> true
+    _ -> false
+
+  els' <- Document.querySelectorAll Document.document "main"
+  log $ show $ case els' of
+    [] -> true
+    _ -> false

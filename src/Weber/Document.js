@@ -7,3 +7,11 @@ exports["querySelector'"] = function(document) {
     };
   };
 };
+
+exports.querySelectorAll = function(document) {
+  return function(selector) {
+    return function() {
+      return [].slice.call(document.querySelectorAll(selector));
+    };
+  };
+};
