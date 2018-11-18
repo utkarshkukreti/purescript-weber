@@ -5,7 +5,7 @@
     "build": "run-s build:event build:pulp",
     "build:event": "ts-node g/Event.ts > src/Weber/Event.purs",
     "build:pulp": "pulp build",
-    "test": "pulp test"
+    "test": "pulp build && pulp browserify --main Test.Main > test/index.js && echo 'Now open test/index.html in your browser!'"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.3",
