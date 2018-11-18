@@ -11,3 +11,9 @@ exports.effect0 = function(a) {
     };
   };
 };
+
+exports.to = function(name) {
+  return function(a) {
+    return a instanceof window[name] ? a : null;
+  };
+};

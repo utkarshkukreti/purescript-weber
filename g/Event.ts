@@ -130,10 +130,15 @@
 import Prelude
 
 import Effect (Effect)
+import Data.Maybe (Maybe)
+import Data.Nullable (Nullable)
+import Data.Nullable as Nullable
 
 foreign import property :: forall a b c. a -> b -> c
 
-foreign import effect0 :: forall a b. String -> a -> b`);
+foreign import effect0 :: forall a b. String -> a -> b
+
+foreign import to :: forall a b. String -> a -> Nullable b`);
 
   const done: Record<string, Type> = {};
   for (const name of <Event[]>Object.keys(All)) {
@@ -179,5 +184,13 @@ ${identifier} = effect0 "${n}"
       console.log(`instance is${extend}${name} :: Is${extend} ${name}`);
       current = Extends[current];
     }
+    const map: Record<string, string> = {
+      Event: 'Event',
+      Ui: 'UIEvent',
+    };
+    const className = map[name] || `${name}Event`;
+    console.log(`
+to${name} :: forall a. a -> Maybe ${name}
+to${name} = Nullable.toMaybe <<< to "${className}"`);
   }
 })();

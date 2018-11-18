@@ -3,10 +3,15 @@ module Weber.Event where
 import Prelude
 
 import Effect (Effect)
+import Data.Maybe (Maybe)
+import Data.Nullable (Nullable)
+import Data.Nullable as Nullable
 
 foreign import property :: forall a b c. a -> b -> c
 
 foreign import effect0 :: forall a b. String -> a -> b
+
+foreign import to :: forall a b. String -> a -> Nullable b
 
 --
 
@@ -26,6 +31,9 @@ pseudoElement = property "pseudoElement"
 instance isAnimationAnimation :: IsAnimation Animation
 instance isEventAnimation :: IsEvent Animation
 
+toAnimation :: forall a. a -> Maybe Animation
+toAnimation = Nullable.toMaybe <<< to "AnimationEvent"
+
 --
 
 foreign import data Clipboard :: Type
@@ -34,6 +42,9 @@ class IsClipboard a
 
 instance isClipboardClipboard :: IsClipboard Clipboard
 instance isEventClipboard :: IsEvent Clipboard
+
+toClipboard :: forall a. a -> Maybe Clipboard
+toClipboard = Nullable.toMaybe <<< to "ClipboardEvent"
 
 --
 
@@ -45,6 +56,9 @@ instance isCompositionComposition :: IsComposition Composition
 instance isUiComposition :: IsUi Composition
 instance isEventComposition :: IsEvent Composition
 
+toComposition :: forall a. a -> Maybe Composition
+toComposition = Nullable.toMaybe <<< to "CompositionEvent"
+
 --
 
 foreign import data Drag :: Type
@@ -55,6 +69,9 @@ instance isDragDrag :: IsDrag Drag
 instance isMouseDrag :: IsMouse Drag
 instance isUiDrag :: IsUi Drag
 instance isEventDrag :: IsEvent Drag
+
+toDrag :: forall a. a -> Maybe Drag
+toDrag = Nullable.toMaybe <<< to "DragEvent"
 
 --
 
@@ -88,6 +105,9 @@ type' = property "type"
 
 instance isEventEvent :: IsEvent Event
 
+toEvent :: forall a. a -> Maybe Event
+toEvent = Nullable.toMaybe <<< to "Event"
+
 --
 
 foreign import data Focus :: Type
@@ -97,6 +117,9 @@ class IsFocus a
 instance isFocusFocus :: IsFocus Focus
 instance isUiFocus :: IsUi Focus
 instance isEventFocus :: IsEvent Focus
+
+toFocus :: forall a. a -> Maybe Focus
+toFocus = Nullable.toMaybe <<< to "FocusEvent"
 
 --
 
@@ -140,6 +163,9 @@ which = property "which"
 instance isKeyboardKeyboard :: IsKeyboard Keyboard
 instance isUiKeyboard :: IsUi Keyboard
 instance isEventKeyboard :: IsEvent Keyboard
+
+toKeyboard :: forall a. a -> Maybe Keyboard
+toKeyboard = Nullable.toMaybe <<< to "KeyboardEvent"
 
 --
 
@@ -199,6 +225,9 @@ instance isMouseMouse :: IsMouse Mouse
 instance isUiMouse :: IsUi Mouse
 instance isEventMouse :: IsEvent Mouse
 
+toMouse :: forall a. a -> Maybe Mouse
+toMouse = Nullable.toMaybe <<< to "MouseEvent"
+
 --
 
 foreign import data Pointer :: Type
@@ -240,6 +269,9 @@ instance isMousePointer :: IsMouse Pointer
 instance isUiPointer :: IsUi Pointer
 instance isEventPointer :: IsEvent Pointer
 
+toPointer :: forall a. a -> Maybe Pointer
+toPointer = Nullable.toMaybe <<< to "PointerEvent"
+
 --
 
 foreign import data Touch :: Type
@@ -249,6 +281,9 @@ class IsTouch a
 instance isTouchTouch :: IsTouch Touch
 instance isUiTouch :: IsUi Touch
 instance isEventTouch :: IsEvent Touch
+
+toTouch :: forall a. a -> Maybe Touch
+toTouch = Nullable.toMaybe <<< to "TouchEvent"
 
 --
 
@@ -262,6 +297,9 @@ propertyName = property "propertyName"
 instance isTransitionTransition :: IsTransition Transition
 instance isEventTransition :: IsEvent Transition
 
+toTransition :: forall a. a -> Maybe Transition
+toTransition = Nullable.toMaybe <<< to "TransitionEvent"
+
 --
 
 foreign import data Ui :: Type
@@ -273,6 +311,9 @@ detail = property "detail"
 
 instance isUiUi :: IsUi Ui
 instance isEventUi :: IsEvent Ui
+
+toUi :: forall a. a -> Maybe Ui
+toUi = Nullable.toMaybe <<< to "UIEvent"
 
 --
 
@@ -296,3 +337,6 @@ instance isWheelWheel :: IsWheel Wheel
 instance isMouseWheel :: IsMouse Wheel
 instance isUiWheel :: IsUi Wheel
 instance isEventWheel :: IsEvent Wheel
+
+toWheel :: forall a. a -> Maybe Wheel
+toWheel = Nullable.toMaybe <<< to "WheelEvent"
